@@ -14,6 +14,7 @@ public class Score {
     private static JPanel panel2;
     private JLabel label;
     private JLabel emptyLabel;
+    private JLabel emptyLabel2;
     private CustomButton win;
     private CustomButton lose;
     private CustomButton replayButton;
