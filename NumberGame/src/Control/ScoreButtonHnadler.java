@@ -1,5 +1,4 @@
 package Control;
-
 import View.NewGame;
 import View.Score;
 import View.ViewGame;
@@ -19,7 +18,6 @@ public class ScoreButtonHnadler implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        JOptionPane.showMessageDialog(null, "If you view your statistics, you are not able to replay again...");
         frame.remove(mainPanel);
         new Score(frame);
         frame.revalidate();

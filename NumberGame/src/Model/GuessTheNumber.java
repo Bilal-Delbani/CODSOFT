@@ -18,28 +18,48 @@ public class GuessTheNumber {
     private static int guessedNumber;
 
     //constructor
-    public GuessTheNumber(int guessedNumber) {
-        this.guessedNumber = guessedNumber;
-        triesNumber++;
+    public GuessTheNumber(String guess) {
+        if(guess.equals("")){
+            setStatus("<html>Please enter a valid number between 1 and 100.<br>No empty field is allowed.</html>");
+            setGuessField("");
+        }
+        try {
+            this.guessedNumber = Integer.parseInt(guess);
+        } catch (NumberFormatException e) {
+            setStatus("<html>Please enter a valid number between 1 and 100.<br>No characters or symbols allowed.</html>");
+            setGuessField("");
+            return;
+        }
+
         //during the game until win
-        if(triesNumber<=ATTEMPTS){
-            setLabelOfTries("Number of tries: " + triesNumber + "/"+ATTEMPTS);
+        if(triesNumber<ATTEMPTS){
             if(guessedNumber<1 || guessedNumber>100){
                 setStatus("Please enter a valid number between 1 and 100.");
                 setGuessField("");
             }
-            else if (guessedNumber < numberToGuess) {
+            else if(guessedNumber>= numberToGuess-3 && guessedNumber<=numberToGuess+3){
+                triesNumber++;
+                setLabelOfTries("Number of tries: " + triesNumber + "/"+ATTEMPTS);
+                setStatus("Your guess is so close.");
+                setGuessField("");
+            }
+            else if (guessedNumber < numberToGuess-3) {
+                triesNumber++;
+                setLabelOfTries("Number of tries: " + triesNumber + "/"+ATTEMPTS);
                 setStatus("Your guess is too low.");
                 setGuessField("");
             }
-            else if (guessedNumber > numberToGuess) {
+            else if (guessedNumber > numberToGuess+3) {
+                triesNumber++;
+                setLabelOfTries("Number of tries: " + triesNumber + "/"+ATTEMPTS);
                 setStatus("Your guess is too high.");
                 setGuessField("");
             }
             else {
                 setStatus("Congratulations! You've guessed the correct number.");
                 setGuessField("");
-                triesNumber=0;
+                numberToGuess = random.nextInt(100) + 1;
+                triesNumber=1;
                 wins++;
                 setLabelOfTries("Number of tries: " + triesNumber + "/"+ATTEMPTS);
                 newGame("Congratulations! You've won!!!");
@@ -48,11 +68,14 @@ public class GuessTheNumber {
         //if user looses (out of attempts)
         else{
             setGuessField("");
-            triesNumber=0;
+            numberToGuess = random.nextInt(100) + 1;
+            triesNumber=1;
             lose++;
             newGame("Unfortunately, You're out of attempts!!!");
 
         }
+
+
     }
 
 

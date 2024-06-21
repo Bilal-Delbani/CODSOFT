@@ -1,5 +1,6 @@
 package Control;
 import View.NewGame;
+import View.Score;
 import View.ViewGame;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -12,6 +13,10 @@ public class ReplayButtonHandler implements ActionListener {
     public ReplayButtonHandler(NewGame newGame) {
         this.frame = newGame.getFrame();
         this.mainPanel = newGame.getPanel();
+    }
+    public ReplayButtonHandler(Score score) {
+        this.frame = score.getFrame();
+        this.mainPanel = score.getPanel();
     }
 
     @Override

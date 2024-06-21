@@ -16,9 +16,7 @@ public class Guess {
     //constructor
     public Guess(JFrame frame){
         //get the number guessed by the user from ViewGame and send it to the Model
-        guessedNumber = Integer.parseInt(getGuess());
-        //Model object
-        GuessTheNumber g = new GuessTheNumber(guessedNumber);
+        GuessTheNumber g = new GuessTheNumber(getGuess());
 
         this.frame = frame;
         this.mainPanel =  getPanel();

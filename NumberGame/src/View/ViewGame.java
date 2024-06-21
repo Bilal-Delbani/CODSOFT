@@ -31,7 +31,7 @@ public class ViewGame {
         // Set up the panel
         mainPanel = new JPanel();
         panel = new JPanel();
-        mainPanel.setBorder(new EmptyBorder(40,40,20,40));
+        mainPanel.setBorder(new EmptyBorder(10,40,10,40));
         mainPanel.setLayout(new GridLayout(3,1,0,40));
         panel.setLayout(new GridLayout(1,2,30,0));
 
