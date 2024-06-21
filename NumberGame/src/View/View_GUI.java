@@ -29,6 +29,9 @@ public class View_GUI {
         // Set up the frame and panels
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(450, 450);
+        frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
+
         mainPanel.setBorder(new EmptyBorder(20,20,20,20));
         mainPanel.setLayout(new GridLayout(2,1,0,10));
         panel.setBorder(new EmptyBorder(50,20,50,20));
