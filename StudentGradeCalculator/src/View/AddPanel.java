@@ -21,7 +21,7 @@ public class AddPanel {
     public JPanel AddPanel(){
         //addPanel
         addPanel = new JPanel();
-        addPanel.setLayout(new GridLayout(2,3));
+        addPanel.setLayout(new GridLayout(2,3,15,20));
 
         //customising the courseName label
         courseName = new JLabel("Course Name");
