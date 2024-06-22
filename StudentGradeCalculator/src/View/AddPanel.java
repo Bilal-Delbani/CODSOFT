@@ -7,6 +7,8 @@ public class AddPanel {
     //it will *only* include an add button *without* remove button
     private static JPanel addPanel;
 
+    private static GridBagConstraints gbc;
+
     //labels
     private static JLabel courseName;
     private static JLabel expectedGrade;
@@ -18,41 +20,73 @@ public class AddPanel {
     //"+" button that is responsible for adding new courses
     private static JButton addButton;
 
-    public JPanel AddPanel(){
+    public AddPanel(){
         //addPanel
-        addPanel = new JPanel();
-        addPanel.setLayout(new GridLayout(2,3,15,20));
+        addPanel = new JPanel(new GridBagLayout());
+        gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 0, 5); // Add padding around components
+
 
         //customising the courseName label
-        courseName = new JLabel("Course Name");
-        courseName.setFont(new Font("Arial", Font.BOLD, 12));
+        courseName = new JLabel("Course Name                    ");
+        courseName.setFont(new Font("Monospace", Font.PLAIN, 12));
         courseName.setHorizontalAlignment(SwingConstants.LEFT);
         courseName.setVerticalAlignment(SwingConstants.CENTER);
-        courseName.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
+        courseName.setBorder(BorderFactory.createEmptyBorder(8, 0, 0, 0));
+
+        //adding the course name label
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.WEST;
+        addPanel.add(courseName, gbc);
 
         //customising the expectedGrade label
-        expectedGrade = new JLabel("Expected Grade");
-        expectedGrade.setFont(new Font("Arial", Font.BOLD, 12));
+        expectedGrade = new JLabel("Expected Grade                 ");
+        expectedGrade.setFont(new Font("Monospace", Font.PLAIN, 12));
         expectedGrade.setHorizontalAlignment(SwingConstants.LEFT);
         expectedGrade.setVerticalAlignment(SwingConstants.CENTER);
-        expectedGrade.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
+        expectedGrade.setBorder(BorderFactory.createEmptyBorder(8, 0, 0, 0));
 
-        //creating the text fields of course name and its grade
+        //adding the expected grade label
+        gbc.gridx = 2;
+        gbc.gridy = 0;
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.WEST;
+        addPanel.add(expectedGrade, gbc);
+
+
+        //creating and adding the course name text field
         Course = new JTextField();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        addPanel.add(Course, gbc);
+
+        //creating and adding the grade text field
         Grade = new JTextField();
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        addPanel.add(Grade, gbc);
+
 
         //creating the add button
         addButton = new JButton("+");
-        addButton.setPreferredSize(new JCheckBox().getPreferredSize());
+        gbc.gridx = 3;
+        gbc.gridy = 1;
+        gbc.gridwidth = 1;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.anchor = GridBagConstraints.CENTER;
+        addButton.setPreferredSize(new Dimension(40,15));
+        addPanel.add(addButton, gbc);
 
-        //add components for the add panel
-        addPanel.add(courseName);
-        addPanel.add(expectedGrade);
-        addPanel.add(new JLabel(""));
-        addPanel.add(Course);
-        addPanel.add(Grade);
-        addPanel.add(addButton);
 
+    }
+
+    public JPanel getAddPanel(){
         return addPanel;
     }
 }
