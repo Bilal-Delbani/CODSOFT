@@ -1,8 +1,14 @@
 package View;
+import Control.RemoveButtonListener;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.HashMap;
 
-public class AddPanel {
+
+public class AddCourse {
     //this panel will be added just once to the mainScrollPanel
     //it will *only* include an add button *without* remove button
     private static JPanel addPanel;
@@ -20,7 +26,18 @@ public class AddPanel {
     //"+" button that is responsible for adding new courses
     private static JButton addButton;
 
-    public AddPanel(){
+    //"-" button that is responsible for removing its corresponding panel
+    private static JButton removeButton;
+
+    private static int GridY=0;
+    private boolean remove=false;
+
+    private HashMap<Integer, JTextField> courseHash = new HashMap<>();
+    private HashMap<Integer, JTextField> gradeHash = new HashMap<>();
+    private HashMap<Integer, JButton> addHash = new HashMap<>();
+    private HashMap<Integer, JButton> removeHash = new HashMap<>();
+
+    public AddCourse(){
         //addPanel
         addPanel = new JPanel(new GridBagLayout());
         gbc = new GridBagConstraints();
@@ -55,38 +72,71 @@ public class AddPanel {
         gbc.anchor = GridBagConstraints.WEST;
         addPanel.add(expectedGrade, gbc);
 
+        addCourse();
+        remove=true;
+    }
+
+
+    public JPanel getAddPanel(){
+        return addPanel;
+    }
+
+    public void addCourse(){
+        GridY++;
 
         //creating and adding the course name text field
         Course = new JTextField();
         gbc.gridx = 0;
-        gbc.gridy = 1;
+        gbc.gridy = GridY;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         addPanel.add(Course, gbc);
+        courseHash.put(GridY,Course);
 
         //creating and adding the grade text field
         Grade = new JTextField();
         gbc.gridx = 1;
-        gbc.gridy = 1;
+        gbc.gridy = GridY;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         addPanel.add(Grade, gbc);
-
+        gradeHash.put(GridY,Grade);
 
         //creating the add button
         addButton = new JButton("+");
         gbc.gridx = 3;
-        gbc.gridy = 1;
+        gbc.gridy = GridY;
         gbc.gridwidth = 1;
         gbc.fill = GridBagConstraints.NONE;
         gbc.anchor = GridBagConstraints.CENTER;
         addButton.setPreferredSize(new Dimension(40,15));
         addPanel.add(addButton, gbc);
+        addHash.put(GridY,addButton);
 
+        if(remove==true){
+            //creating the remove button
+            removeButton = new JButton("-");
+            gbc.gridx = 4;
+            gbc.gridy = GridY;
+            gbc.gridwidth = 1;
+            gbc.fill = GridBagConstraints.NONE;
+            gbc.anchor = GridBagConstraints.CENTER;
+            removeButton.setPreferredSize(new Dimension(40,15));
+            addPanel.add(removeButton, gbc);
+            removeHash.put(GridY,removeButton);
 
+            removeButton.addActionListener(new RemoveButtonListener(courseHash,gradeHash,addHash,removeHash,GridY,addPanel));
+        }
+
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addCourse();
+            }
+        });
+        addPanel.revalidate();
+        addPanel.repaint();
     }
 
-    public JPanel getAddPanel(){
-        return addPanel;
-    }
+
 }
