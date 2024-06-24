@@ -1,5 +1,7 @@
 package Control;
 
+import Model.Calculate;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,6 +36,7 @@ public class RemoveButtonListener implements ActionListener {
         addPanel.remove(add);
         addPanel.remove(remove);
 
+        new Calculate(grade);
         addPanel.revalidate();
         addPanel.repaint();
     }
