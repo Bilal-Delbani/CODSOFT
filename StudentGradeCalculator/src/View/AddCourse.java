@@ -1,6 +1,6 @@
 package View;
+import Control.Calculator;
 import Control.RemoveButtonListener;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,20 +12,15 @@ public class AddCourse {
     //this panel will be added just once to the mainScrollPanel
     //it will *only* include an add button *without* remove button
     private static JPanel addPanel;
-
     private static GridBagConstraints gbc;
-
     //labels
     private static JLabel courseName;
     private static JLabel expectedGrade;
-
     //text fields for entering the course name and its expected grade
     private static JTextField Course;
     private static JTextField Grade;
-
     //"+" button that is responsible for adding new courses
     private static JButton addButton;
-
     //"-" button that is responsible for removing its corresponding panel
     private static JButton removeButton;
 
@@ -42,7 +37,6 @@ public class AddCourse {
         addPanel = new JPanel(new GridBagLayout());
         gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 0, 5); // Add padding around components
-
 
         //customising the courseName label
         courseName = new JLabel("Course Name                    ");
@@ -104,6 +98,7 @@ public class AddCourse {
 
         //creating the add button
         addButton = new JButton("+");
+        addButton.setFocusPainted(false);
         gbc.gridx = 3;
         gbc.gridy = GridY;
         gbc.gridwidth = 1;
@@ -113,9 +108,12 @@ public class AddCourse {
         addPanel.add(addButton, gbc);
         addHash.put(GridY,addButton);
 
+
+
         if(remove==true){
             //creating the remove button
             removeButton = new JButton("-");
+            removeButton.setFocusPainted(false);
             gbc.gridx = 4;
             gbc.gridy = GridY;
             gbc.gridwidth = 1;
@@ -124,13 +122,13 @@ public class AddCourse {
             removeButton.setPreferredSize(new Dimension(40,15));
             addPanel.add(removeButton, gbc);
             removeHash.put(GridY,removeButton);
-
             removeButton.addActionListener(new RemoveButtonListener(courseHash,gradeHash,addHash,removeHash,GridY,addPanel));
         }
 
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                new Calculator(Grade,GridY);
                 addCourse();
             }
         });
