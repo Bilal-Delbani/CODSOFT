@@ -21,10 +21,7 @@ public class CalculationPanel {
         gbc.insets = new Insets(5, 5, 0, 5); // Add padding around components
 
         //customising the marks label
-        marks = new JLabel("Total Marks:     ");
-        marks.setFont(new Font("Monospace", Font.PLAIN, 12));
-        marks.setHorizontalAlignment(SwingConstants.LEFT);
-        marks.setVerticalAlignment(SwingConstants.CENTER);
+        marks = CustomiseLabel(marks,"Total Marks:     ");
         //adding the marks label
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -34,10 +31,7 @@ public class CalculationPanel {
 
 
         //customising the average label
-        average = new JLabel("Average Percentage:     ");
-        average.setFont(new Font("Monospace", Font.PLAIN, 12));
-        average.setHorizontalAlignment(SwingConstants.LEFT);
-        average.setVerticalAlignment(SwingConstants.CENTER);
+        average = CustomiseLabel(average,"Average Percentage:     ");
         //adding the average label
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -47,10 +41,7 @@ public class CalculationPanel {
 
 
         //customising the Grade label
-        Grade = new JLabel("Expected Letter Grade:     ");
-        Grade.setFont(new Font("Monospace", Font.PLAIN, 12));
-        Grade.setHorizontalAlignment(SwingConstants.LEFT);
-        Grade.setVerticalAlignment(SwingConstants.CENTER);
+        Grade = CustomiseLabel(Grade,"Expected Letter Grade:     ");
         //adding the grade label
         gbc.gridx = 0;
         gbc.gridy = 2;
@@ -97,5 +88,12 @@ public class CalculationPanel {
     }
     public JPanel getGradesPanel(){
         return gradesPanel;
+    }
+    public static JLabel CustomiseLabel(JLabel label, String text){
+        label = new JLabel(text);
+        label.setFont(new Font("Monospace", Font.PLAIN, 12));
+        label.setHorizontalAlignment(SwingConstants.LEFT);
+        label.setVerticalAlignment(SwingConstants.CENTER);
+        return label;
     }
 }
