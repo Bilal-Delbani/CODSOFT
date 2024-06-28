@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/CODSOFT.iml" filepath="$PROJECT_DIR$/.idea/CODSOFT.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CourseRegistration/CourseRegistration.iml" filepath="$PROJECT_DIR$/CourseRegistration/CourseRegistration.iml" />
       <module fileurl="file://$PROJECT_DIR$/NumberGame/NumberGame.iml" filepath="$PROJECT_DIR$/NumberGame/NumberGame.iml" />
       <module fileurl="file://$PROJECT_DIR$/StudentGradeCalculator/StudentGradeCalculator.iml" filepath="$PROJECT_DIR$/StudentGradeCalculator/StudentGradeCalculator.iml" />
     </modules>
