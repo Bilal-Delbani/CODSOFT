@@ -59,7 +59,7 @@ public class Login {
         westPanel = new JPanel();
         westPanel.setLayout(new BorderLayout());
         //get the login panel object => the text fields and labels required
-        westPanel.add(new LoginPanel().getPanel(),BorderLayout.WEST);
+        westPanel.add(new LoginPanel(frame).getPanel(),BorderLayout.WEST);
 
         //north panel
         northPanel = new JPanel();
@@ -81,4 +81,6 @@ public class Login {
         frame.revalidate();
         frame.setVisible(true);
     }
+    public static JPanel getMainPanel(){ return mainPanel;}
+
 }

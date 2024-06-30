@@ -1,12 +1,18 @@
 package View;
+import Control.LoginControl;
 import Customising.CustomButton;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.concurrent.CompletableFuture;
+
+import static View.Login.getMainPanel;
 
 
 public class LoginPanel {
@@ -19,7 +25,7 @@ public class LoginPanel {
     private static JLabel forgetPass;
     private static JButton Login;
 
-    public LoginPanel(){
+    public LoginPanel(JFrame frame){
         panel = new JPanel(new GridBagLayout());
         gbc = new GridBagConstraints();
         gbc.insets = new Insets(0, 5, 20, 5); // Add padding around components
@@ -101,7 +107,35 @@ public class LoginPanel {
             }
         });
 
+        //login
+        Login.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                // Call the authenticate method asynchronously
+                CompletableFuture<Boolean> future = new LoginControl().Login(username,password);
+                future.thenAccept(isAuthenticated -> {
+                    SwingUtilities.invokeLater(() -> {
+                        if (isAuthenticated) {
+                            frame.remove(getMainPanel());
+                            new Test(frame);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Incorrect Username or Password!");
+                            frame.remove(getMainPanel());
+                            new Login(frame);                        }
+                    });
+                }).exceptionally(ex -> {
+                    // Handle exceptions and update the UI on the Event Dispatch Thread
+                    SwingUtilities.invokeLater(() -> {
+                        JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
+                    });
+                    return null;
+                });
+            }
+        });
     }
+
+
     public static JLabel CustomiseLabel(JLabel label, String text){
         label = new JLabel(text);
         label.setFont(new Font("Monospace", Font.BOLD, 18));
