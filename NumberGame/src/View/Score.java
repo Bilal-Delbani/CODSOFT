@@ -14,6 +14,7 @@ public class Score {
     private static JPanel panel2;
     private JLabel label;
     private JLabel emptyLabel;
+    private JLabel emptyLabel2;
     private CustomButton win;
     private CustomButton lose;
     private CustomButton replayButton;
@@ -54,10 +55,11 @@ public class Score {
 
         //customise 1st empty label
         emptyLabel = new JLabel("");
-        emptyLabel.setFont(new Font("Arial", Font.BOLD, 20));
-        emptyLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        emptyLabel.setVerticalAlignment(SwingConstants.CENTER);
         emptyLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
+
+        //customise 2nd empty label
+        emptyLabel2 = new JLabel("");
+        emptyLabel2.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
 
         // customising the buttons
         UIManager.put("Button.font", new Font("Arial", Font.BOLD, 18));
@@ -80,7 +82,7 @@ public class Score {
 
         panel2.add(emptyLabel);
         panel2.add(replayButton);
-        panel2.add(emptyLabel);
+        panel2.add(emptyLabel2);
 
         mainPanel.add(label);
         mainPanel.add(panel);

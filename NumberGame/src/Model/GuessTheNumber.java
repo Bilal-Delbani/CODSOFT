@@ -37,19 +37,13 @@ public class GuessTheNumber {
                 setStatus("Please enter a valid number between 1 and 100.");
                 setGuessField("");
             }
-            else if(guessedNumber>= numberToGuess-3 && guessedNumber<=numberToGuess+3){
-                triesNumber++;
-                setLabelOfTries("Number of tries: " + triesNumber + "/"+ATTEMPTS);
-                setStatus("Your guess is so close.");
-                setGuessField("");
-            }
-            else if (guessedNumber < numberToGuess-3) {
+            else if (guessedNumber < numberToGuess) {
                 triesNumber++;
                 setLabelOfTries("Number of tries: " + triesNumber + "/"+ATTEMPTS);
                 setStatus("Your guess is too low.");
                 setGuessField("");
             }
-            else if (guessedNumber > numberToGuess+3) {
+            else if (guessedNumber > numberToGuess) {
                 triesNumber++;
                 setLabelOfTries("Number of tries: " + triesNumber + "/"+ATTEMPTS);
                 setStatus("Your guess is too high.");
